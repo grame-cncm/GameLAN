@@ -40,14 +40,6 @@ limiter(x,y) =x*coeff,y*coeff
 
 /* ---------------- Reverb Section ------------------- */
 
-/* ============= DESCRIPTION ============
-
-- Reverberation
-- Head = ON
-- Bottom = OFF
-
-*/
-
 zita =_<:zita_rev3;
 
 zita_rev3(x,y) = zita_rev1_stereo4(rdel,f1,f2,t60dc,t60m,fsmax,x,y) : out_eq
