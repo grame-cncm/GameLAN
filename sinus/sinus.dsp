@@ -1,5 +1,5 @@
 declare name "Sinus";
-declare author "Elodie Rabibisoa & Romain Constant";
+declare author "Développement Grame - CNCM par Elodie Rabibisoa et Romain Constant.";
 
 import ("stdfaust.lib");
 

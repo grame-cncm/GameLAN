@@ -28,3 +28,9 @@ local.properties
 
 # Android Studio captures folder
 captures/
+
+# WAV files
+*.wav
+
+# Work in progress
+old_files/
