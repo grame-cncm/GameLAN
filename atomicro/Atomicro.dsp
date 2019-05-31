@@ -46,10 +46,15 @@ fade_in = select2(record,(-1)*(base_amp),base_amp):+~(min((1)-base_amp):max(base
 
 
 // BUFFER SEQUENCER //////////////////////////////////////////
+grain_mode = checkbox("Grain mode"):int;
+grain_size = 44100; //hslider("Grain size", 0, 0, fin_rec, 1);
+grain_start = 500;
+grain_play = (fmod(_,(max(1,int(fin_rec)) - (fin_rec - grain_size)) : min(fin_rec-grain_start) : max(1))~(+(speed): *(play)))  + (grain_start * play);
 wr_index = rwtable(size+1, 0., windex,_, rindex) // le 0. dans rwtable est la valeur de l'init et son type défini le type de la table
 	with {
 			
-			rindex = id_count_play:int;
+			//rindex = id_count_play:int;
+			rindex = select2(grain_mode,id_count_play:int,grain_play:int);
 			windex = id_count_rec:int;
 		};
 
@@ -75,52 +80,3 @@ process =_,(fade_in):*:wr_index:idelay_drywet:*(volume)
 			with {
 				volume = hslider("volume",1,-0.1,1,0.001):max(0):min(1):fi.lowpass(1,1);
 				};
-			
-			
-
-//------------------Player type 2 ------------//
-//Lecture en boucle avec possibilité de timeStretch et granulation du son
-//sampleSize = table size index (i.e given out by waveform 1st output)
-//readTable = 'rdtable' object associated with 'waveform'
-
-playType_02(sampleSize,readTable) = hgroup("Player",player_type_02(sampleSize,readTable));
-
-player_type_02(sampleSize,readTable) = index(sampleSize) : readTable;// : sampleCut;
-
-timeStretch(speed, size) = speed : (+ : fmod(_,size)) ~ _  :  int ;
-speedVar = hslider("Speed[hidden:1][acc:1 1 -10 0 10]", 1, 0.6, 1.2, 0.01):max(0.2):min(1.5):si.smooth(0.995);
-index(sampleSize) =  timeStretch(speedVar, sampleSize);//variation de vitesse de lecture
-
-/*
-sampleCut(x) = x*(counter>0.0):si.smooth(0.97) with{
-trig = button("Play");
-decayTime = hslider("grainSize",sampleSize,0,sampleSize,1);
-upfront(x) = (x-x')>0.0;
-decay(x) = x - (x>0.0)/decayTime;
-decrease = +~decay;
-counter = trig : upfront : decrease;
-};
-*/
-// ---------------- Non utilisé ---------------
-
-//sampleSize = I_have_a_dream_one_day_2;
-//sizeVar(y) = sampleSize - y : max(200) : min(sampleSize):int;//Variation de la taille du sample => raccourcit le sample
-//index =  timeStretch(speedVar, sizeVar(lengthSample));//variation de vitesse de lecture
-//indexVar(x) = index + x : max(0) : min(sampleSize - 200):int; //variation de début et fin de lecture
-//lengthSample = (sampleSize - (hslider("v:/[2]Size",sampleSize,0,sampleSize,1))):int;//modifie la taille du sample
-//positionSample = hslider("v:/[1]Position tete de lecture", 0, 0, (sampleSize-200),1):int;//Deplace le debut de la lecture du sample
-//player = I_have_a_dream_one_day_2_rtable_0(indexVar(positionSample)):sampleCut;
-
-
-//top(s) = select2(reset,1,s);//%1 car division par 1 reste 0 => pour redemarrer l'increment
-//top(s) = select2(start,s,1);
-//reset = abs(button("[2]Reset")-1);//Inversion 0 et 1
-/*start = check : trigger : counter >(0) with{
-  check = checkbox("Play/Pause");
-  trigger(x) = abs(x-x')>0.5;
-  counter(g) = (+(1):*(1-g))~_;
-};*/
-
-//switch = checkbox("[1]ON/OFF"):int;//Pour incrementer +1 ou +0, figer la lecture
-//indexVar = hslider("Variation", 0, 0, 100000, 1):int;
-//index = %(I_have_a_dream_one_day_2:top)~+(switch):+(indexVar);

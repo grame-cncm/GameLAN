@@ -1,11 +1,11 @@
-declare name "Sequenceur";
+declare name "Sequencer";
 declare author "Développement Grame - CNCM par Elodie Rabibisoa et Romain Constant.";
 
 import ("stdfaust.lib");
 
 N = 4;
 onOff = checkbox("[1]ON/OFF");
-sequenceur = par(i, N, play(sample(i), file_index, i) * (sample_pick == i)) :>_ * envelope;
+sequenceur = par(i, N, play(sample(i), file_index, i) * (sample_pick == i)) :>_ * custom_envelope;
 
 process = sequenceur * onOff <:_,_;
 
@@ -87,16 +87,35 @@ play(s, part) = (part, reader(s)) : outs(s)
 
 // ------------------------------------- Envelope -----------------------------------
 
-envelope = en.asr(a,s,r,gate)  : fi.lowpass(1,1) with { //lowpass to prevent clicking 
-  a = 0.000001; //in seconds
-  s = 1; //gain btw 0 and 1
-  r = 0.000002; //in seconds
+// envelope = en.asr(a,s,r,gate)  : fi.lowpass(1,1) with { //lowpass to prevent clicking 
+//   a = 0.000001; //in seconds
+//   s = 1; //gain btw 0 and 1
+//   r = 0.000002; //in seconds
   
-  front(x) 	= abs(x-x') > 0.5;
-  decay(y) = y - (y>0.0)/sampleDuration;
-  release = + ~ decay;
-  sampleDuration = hslider("Decay[acc:0 0 -8 0 8][hidden:1]", 22050, 220, 44100, 1);// * 44100 : min(44100) : max(441) : int;
+//   front(x) 	= abs(x-x') > 0.5;
+//   decay(y) = y - (y>0.0)/sampleDuration;
+//   release = + ~ decay;
+//   sampleDuration = hslider("Decay[acc:0 0 -8 0 8][hidden:1]", 22050, 220, 44100, 1);// * 44100 : min(44100) : max(441) : int;
   
-  gate = trigger : front : release > (0.0);
+//   gate = trigger : front : release > (0.0);
 
-};
+// };
+
+custom_envelope = gate : custom_bpf;
+
+envsize = hslider("Decay[acc:0 0 -8 0 8][hidden:0]", 0.2, 0.05, 1, 0.001) * (ma.SR) : si.smooth(0.999): min(44100) : max(4410) : int;
+
+corres(x) = int(x*envsize/1024);
+
+custom_bpf = ba.bpf.start(0, 0):
+ba.bpf.point(corres(93), 0.99):
+ba.bpf.point(corres(145), 0.95):
+ba.bpf.point(corres(995), 0.95):
+ba.bpf.end(corres(1024), 0);
+
+gate = trigger : front : cust_release > (0.0);
+front(x) 	= abs(x-x') > 0.5;
+ddecay(y) = y - (y>0.0)/envsize;
+cust_release = + ~ ddecay;
+
+
