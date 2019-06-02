@@ -101,21 +101,19 @@ play(s, part) = (part, reader(s)) : outs(s)
 
 // };
 
-custom_envelope = gate : custom_bpf;
+custom_envelope = gate : custom_bpf : fi.lowpass(1, 1);
 
-envsize = hslider("Decay[acc:0 0 -8 0 8][hidden:0]", 0.2, 0.05, 1, 0.001) * (ma.SR) : si.smooth(0.999): min(44100) : max(4410) : int;
+envsize = hslider("Decay[acc:0 0 -8 0 8][hidden:0]", 0.2, 0.005, 1, 0.001) * (ma.SR) : si.smooth(0.999): min(44100) : max(220) : int;
 
 corres(x) = int(x*envsize/1024);
 
-custom_bpf = ba.bpf.start(0, 0):
-ba.bpf.point(corres(93), 0.99):
-ba.bpf.point(corres(145), 0.95):
-ba.bpf.point(corres(995), 0.95):
+custom_bpf = ba.bpf.start(0,0):
+ba.bpf.point(corres(50), 0.95):
+ba.bpf.point(corres(100), 0.9):
+ba.bpf.point(corres(900), 0.9):
 ba.bpf.end(corres(1024), 0);
 
-gate = trigger : front : cust_release > (0.0);
+gate = trigger : front : cust_counter;
 front(x) 	= abs(x-x') > 0.5;
-ddecay(y) = y - (y>0.0)/envsize;
-cust_release = + ~ ddecay;
-
+cust_counter(g)= (+(1):*(1-g))~_;
 
