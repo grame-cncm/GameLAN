@@ -6,10 +6,13 @@ import ("stdfaust.lib");
 N = 11;
 process =  vgroup("MODE", mode_switch) : os.osc * 0.333 * volume <: sinus_reverb,_ : dry_wet <: limiter :>_ * on_off;
 
-scale = par(i, N, freq(i) * choice(i)):>_;
+scale = par(i, N, freq(i) * choice(i)) :>_;
+// numeric display of scale frequency:
+//scale = par(i, N, freq(i) * choice(i)) : display :_;
+// display = ba.selectn(11,freq_scale) : nentry("Frequence[unit:f]", 523.5, 523.5, 2093, 0.1):_;
 
 freq_slide = vslider("h:[2]/slide [unit:Hz][acc:0 0 -10 0 10][hidden:1]",1046.5,523.5,2093.0,0.001) : si.smooth(0.998);
-freq_scale = vslider("h:[2]/radio [unit:Hz][acc:0 0 -10 0 10][style:radio{'523.5':0;'587.3':1;'622.3':2;'784':3;'830.6':4;'1046.5':5;'1174.7':6;'1244.5':7;'1568':8;'1661.2':9;'2093':10}]", 5, 0, 10, 1);
+freq_scale = vslider("h:[2]/radio [unit:Hz][acc:0 0 -10 0 10][hidden:1][style:radio{'523.5':0;'587.3':1;'622.3':2;'784':3;'830.6':4;'1046.5':5;'1174.7':6;'1244.5':7;'1568':8;'1661.2':9;'2093':10}]", 5, 0, 10, 1);
 
 freq(0) = 523.5;
 freq(1) = 587.3;
