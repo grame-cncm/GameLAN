@@ -5,7 +5,7 @@ import ("stdfaust.lib");
 
 N = 4;
 onOff = checkbox("[1]ON/OFF");
-sequenceur = par(i, N, play(sample(i), file_index, i) * (sample_pick == i)) :>_ * custom_envelope;
+sequenceur = par(i, N, play(sample(i), file_index, i) * (sample_pick == i)) :>_ ;
 
 process = sequenceur * onOff <:_,_;
 
@@ -68,9 +68,9 @@ upfront(x) = (x-x')>0.5;
 
 counter(sampleSize) = trigger : decrease > (0.0)
     with { //trig impulse to launch stream of 1
-        decay(y) = y - (y>0.0)/sampleSize;
+        decay(y) = y - (y>0.0)/sampleDuration;
         decrease = +~decay;
-        sampleDuration = hslider("Decay[acc:0 0 -8 0 8][hidden:1]", 22050, 220, sampleSize, 1);// * 44100 : min(44100) : max(441) : int;
+        sampleDuration = hslider("Decay[acc:0 0 -8 0 8][hidden:1]", 1, 0.005, 1.5, 0.001) * (ma.SR): min(sampleSize) : max(220) : int;
     };
 
 
@@ -101,6 +101,7 @@ play(s, part) = (part, reader(s)) : outs(s)
 
 // };
 
+/*
 custom_envelope = gate : custom_bpf : fi.lowpass(1, 1);
 
 envsize = hslider("Decay[acc:0 0 -8 0 8][hidden:0]", 0.2, 0.005, 1, 0.001) * (ma.SR) : si.smooth(0.999): min(44100) : max(220) : int;
@@ -116,4 +117,4 @@ ba.bpf.end(corres(1024), 0);
 gate = trigger : front : cust_counter;
 front(x) 	= abs(x-x') > 0.5;
 cust_counter(g)= (+(1):*(1-g))~_;
-
+*/
