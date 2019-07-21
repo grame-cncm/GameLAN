@@ -1,5 +1,5 @@
 declare name "Sequencer";
-declare author "Développement Grame - CNCM par Elodie Rabibisoa et Romain Constant.";
+declare author "Developpement Grame - CNCM par Elodie Rabibisoa et Romain Constant.";
 
 import ("stdfaust.lib");
 
@@ -70,7 +70,7 @@ counter(sampleSize) = trigger : decrease > (0.0)
     with { //trig impulse to launch stream of 1
         decay(y) = y - (y>0.0)/sampleDuration;
         decrease = +~decay;
-        sampleDuration = hslider("Decay[acc:0 0 -8 0 8][hidden:1]", 1, 0.005, 1.5, 0.001) * (ma.SR): min(sampleSize) : max(220) : int;
+        sampleDuration = hslider("Decay[acc:0 0 -8 0 8][hidden:1]", 1, 0.001, 1.5, 0.001) * (ma.SR): min(sampleSize) : max(44) : int;
     };
 
 

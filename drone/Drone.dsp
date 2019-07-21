@@ -1,5 +1,5 @@
 declare name "Drone";
-declare author "Développement Grame - CNCM par Elodie Rabibisoa et Romain Constant.";
+declare author "Developpement Grame - CNCM par Elodie Rabibisoa et Romain Constant.";
 
 import ("stdfaust.lib");
 

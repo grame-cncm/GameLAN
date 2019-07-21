@@ -1,20 +1,22 @@
 import("stdfaust.lib");
-declare nvoices "6";
+declare nvoices "12";
+declare author "Developpement Grame - CNCM par Elodie Rabibisoa et Romain Constant.";
 // Specific syntax for faust2android
 
 
 process = vgroup("AttacKey [style:keyboard]", instru);
 
-freq = hslider("Freq", 100, 50, 200, 1) / 100;
+freq = hslider("freq", 349.23, 261.63, 783.99, 0.001);
 gain = hslider("gain",0.5,0,1,0.01);
 gate = button("gate");
 
-envelope = en.adsr(0.01,0.01,0.8,0.1,gate)*gain;
+envelope = en.adsr(0.01,0.01,0.9,0.1,gate)*gain;
 
-instru = play(noteOn, 0) * envelope * volume;
+instru = play(noteOn, instrument) * envelope * volume : attackey_reverb * 0.5 <:_,_;
 
-volume = hslider("Volume [acc: 0 0 -10 0 10]", 0.5, 0, 1, 0.001);
-noteOn = soundfile("Bell [url:Bell_F.flac]", 1);
+instrument = hslider("Instruments[style:radio{'1':0;'2':1;'3':2;'4':3,'5':4}]", 0, 0, 4, 1);
+volume = hslider("Volume [acc: 0 0 -8 0 0]", 1, 0, 1, 0.001):si.smoo;
+noteOn = soundfile("Bell [url:{'Piano_F.flac';'Ether_F.flac';'Bell_F.flac';'Saw_F.flac';'Vibraphone_F.flac'}]", 1);
 
 //--------------- Player ---------------//
 
@@ -25,18 +27,31 @@ trigger = gate;
 upfront(x) = (x-x')>0.99;
 
 counter(sampleSize) = trigger : upfront : decrease > (0.0) with{ //trig impulse to launch stream of 1
-    decay(y) = y - (freq * ((y>0.0)/sampleSize));
+    decay(y) = y - (y>0.0)/sampleSize;
     decrease = +~decay;
 };
 
-
-index(sampleSize) = +(counter(sampleSize))~_ * (1 - (trigger : upfront)) : int; //increment loop with reinit to 0 through reversed impulse (trig : upfront)
-
+speed = freq/(349.23*2); //note ref = Fa * 2 car clavier midi ) l'octave au dessus
 play(s, part) = (part, reader(s)) : outs(s)
     with {
         length(s) = part,0 : s : _,si.block(outputs(s)-1);
         srate(s) = part,0 : s : !,_,si.block(outputs(s)-2);
         outs(s) = s : si.block(2), si.bus(outputs(s)-2);
+        index(sampleSize) = +(speed*(float(srate(s)/ma.SR)*(counter(sampleSize))))~_ * (1 - (trigger : upfront)) : int; //increment loop with reinit to 0 through reversed impulse (trig : upfront)
         reader(s) = index(length(s));
     };
 
+attackey_reverb = _<: instrReverb :>_;
+
+instrReverb = _,_ <: *(reverbGain),*(reverbGain),*(1 - reverbGain),*(1 - reverbGain) :
+re.zita_rev1_stereo(rdel,f1,f2,t60dc,t60m,fsmax),_,_ <: _,!,_,!,!,_,!,_ : +,+
+    with {
+       reverbGain = 1; //hslider("v:Reverb/Reverberation Volume",0.1,0.05,1,0.01) : si.smooth(0.999) : min(1) : max(0.05);
+       roomSize = 2; //hslider("Reverberation Room Size", 0.1,0.05,2,0.01) : min(2) : max(0.05);
+       rdel = 20;
+       f1 = 200;
+       f2 = 6000;
+       t60dc = roomSize*3;
+       t60m = roomSize*2;
+       fsmax = 48000;
+    };
