@@ -3,11 +3,13 @@ declare author "Developpement Grame - CNCM par Elodie Rabibisoa et Romain Consta
 
 import ("stdfaust.lib");
 
-N = 4;
-onOff = checkbox("[1]ON/OFF");
-sequenceur = par(i, N, play(sample(i), file_index, i) * (sample_pick == i)) :>_ ;
-
 process = sequenceur * onOff <:_,_;
+
+N = 4;
+
+onOff = checkbox("[1]ON/OFF");
+
+sequenceur = par(i, N, play(sample(i), file_index, i) * (sample_pick == i)) :>_ ;
 
 seq_select = ba.beat(bps) : ba.pulse_countup_loop(15, 1) : hbargraph("Suivi",0,15);
 
@@ -21,7 +23,6 @@ bps = bpm.a25*(typeBpm == 7)+
     bpm.h150*(typeBpm == 0);
 
 typeBpm = vslider("[1]Tempo [style:radio{'150 BPM':0;'125 BPM':1;'100 BPM':2;'75 BPM':3;'62.5 BPM':4;'50 BPM':5;'37.5 BPM':6;'25 BPM':7}]", 0, 0, 7, 1):int;
-//typeBpm = floor(hslider("[2]Tempo", 0, 0, 7, 0.1)) : int;
 
 bpm = environment { // bpm * 4, semiquaver (16th)
     a25 = 25 * 4;
@@ -61,7 +62,6 @@ sample(2) = soundfile("sample_6 [url:Kick_oneshot_N.flac]", 1);
 sample(3) = soundfile("sample_8 [url:Snare_oneshot_N.flac]", 1);
 
 // ------------------------------------ Player --------------------------------------
-
 file_index = 0;
 trigger = par(i, 16, vgroup("[3]Steps",check(i)) == (seq_select + 1) : upfront) :>_;
 upfront(x) = (x-x')>0.5;
@@ -73,8 +73,6 @@ counter(sampleSize) = trigger : decrease > (0.0)
         sampleDuration = hslider("Decay[acc:0 0 -8 0 8][hidden:1]", 1, 0.001, 1.5, 0.001) * (ma.SR): min(sampleSize) : max(44) : int;
     };
 
-
-
 index(sampleSize) = +(counter(sampleSize))~_ * (1 - (trigger : upfront)) : int; //increment loop with reinit to 0 through reversed impulse (trig : upfront)
 
 play(s, part) = (part, reader(s)) : outs(s)
@@ -84,37 +82,3 @@ play(s, part) = (part, reader(s)) : outs(s)
         outs(s) = s : si.block(2), si.bus(outputs(s)-2);
         reader(s,n) = index(length(s));
     };
-
-// ------------------------------------- Envelope -----------------------------------
-
-// envelope = en.asr(a,s,r,gate)  : fi.lowpass(1,1) with { //lowpass to prevent clicking 
-//   a = 0.000001; //in seconds
-//   s = 1; //gain btw 0 and 1
-//   r = 0.000002; //in seconds
-  
-//   front(x) 	= abs(x-x') > 0.5;
-//   decay(y) = y - (y>0.0)/sampleDuration;
-//   release = + ~ decay;
-//   sampleDuration = hslider("Decay[acc:0 0 -8 0 8][hidden:1]", 22050, 220, 44100, 1);// * 44100 : min(44100) : max(441) : int;
-  
-//   gate = trigger : front : release > (0.0);
-
-// };
-
-/*
-custom_envelope = gate : custom_bpf : fi.lowpass(1, 1);
-
-envsize = hslider("Decay[acc:0 0 -8 0 8][hidden:0]", 0.2, 0.005, 1, 0.001) * (ma.SR) : si.smooth(0.999): min(44100) : max(220) : int;
-
-corres(x) = int(x*envsize/1024);
-
-custom_bpf = ba.bpf.start(0,0):
-ba.bpf.point(corres(50), 0.95):
-ba.bpf.point(corres(100), 0.9):
-ba.bpf.point(corres(900), 0.9):
-ba.bpf.end(corres(1024), 0);
-
-gate = trigger : front : cust_counter;
-front(x) 	= abs(x-x') > 0.5;
-cust_counter(g)= (+(1):*(1-g))~_;
-*/

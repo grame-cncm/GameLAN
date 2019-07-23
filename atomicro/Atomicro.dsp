@@ -37,8 +37,8 @@ wr_index = rwtable(size+1, 0.0, windex, _, rindex)
 
 grain_mode = checkbox("h:[1]/Granulation"):int;
 
-grain_size = hslider("Grain size [acc:1 1 -8 0 8]", ((size/44100)/2), 0.005, (size/44100), 0.001) * (ma.SR): min(size-1) : max(110) : int;
-grain_start = hslider("Grain start [acc:0 0 -8 0 8]", ((size/44100)/2), 0, (size/44100), 0.001) * (ma.SR) : min(size - (grain_size+1)) : max(grain_size+1) : int;
+grain_size = hslider("Grain size [hidden:1][acc:1 1 -8 0 8]", ((size/44100)/2), 0.005, (size/44100), 0.001) * (ma.SR): min(size-1) : max(110) : int;
+grain_start = hslider("Grain start [hidden:1][acc:0 0 -8 0 8]", ((size/44100)/2), 0, (size/44100), 0.001) * (ma.SR) : min(size - (grain_size+1)) : max(grain_size+1) : int;
 
 /* -------------------- Delay -----------------------------------*/
 

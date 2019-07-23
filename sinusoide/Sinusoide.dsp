@@ -3,17 +3,20 @@ declare author "Developpement Grame - CNCM par Elodie Rabibisoa et Romain Consta
 
 import ("stdfaust.lib");
 
-N = 11;
 process =  mode_switch : os.osc * 0.333 * volume <: sinus_reverb,_ : dry_wet <: limiter :>_ * on_off;
 
-scale = par(i, N, freq(i) * choice(i)) :>_;
-// numeric display of scale frequency:
-//scale = par(i, N, freq(i) * choice(i)) : display :_;
-// display = ba.selectn(11,freq_scale) : nentry("Frequence[unit:f]", 523.5, 523.5, 2093, 0.1):_;
-
+on_off = checkbox("[1]ON / OFF");
 freq_slide = vslider("Slide [unit:Hz][acc:0 0 -10 0 10][hidden:1]",1046.5,523.5,2093.0,0.001) : si.smooth(0.998);
-//freq_scale = vslider("radio [unit:Hz][acc:0 0 -10 0 10][hidden:1][style:radio{'523.5':0;'587.3':1;'622.3':2;'784':3;'830.6':4;'1046.5':5;'1174.7':6;'1244.5':7;'1568':8;'1661.2':9;'2093':10}]", 5, 0, 10, 1);
 freq_scale = vslider("Radio [unit:Hz][acc:0 0 -10 0 10][hidden:1]", 5, 0, 10, 1);
+volume = hslider("Volume [hidden:1][acc:1 0 -9 0 10]", 0.35, 0, 0.7, 0.001):si.smooth(0.991):min(1):max(0);
+// Default mode = slide (0)
+toggle_mode = checkbox("[0]SLIDE / SCALE");
+mode_switch = select2(toggle_mode, freq_slide, scale);
+
+//----------------- Frequencies --------------------//
+N = 11;
+scale = par(i, N, freq(i) * choice(i)) :>_;
+choice(n) = abs(freq_scale - n) < 0.5;
 
 freq(0) = 523.5;
 freq(1) = 587.3;
@@ -27,13 +30,7 @@ freq(8) = 1568;
 freq(9) = 1661.2;
 freq(10) = 2093;
 
-choice(n) = abs(freq_scale - n) < 0.5;
-volume = hslider("Volume [hidden:1][acc:1 0 -9 0 10]", 0.35, 0, 0.7, 0.001):si.smooth(0.991):min(1):max(0);
-on_off = checkbox("[1]ON / OFF");
-toggle_mode = checkbox("[0]SLIDE / SCALE");
-// Default mode = slide (0)
-mode_switch = select2(toggle_mode, freq_slide, scale);
-
+//----------------- Limiter -----------------------//
 limiter(x,y) =x*coeff,y*coeff
 
 	with {
@@ -42,6 +39,7 @@ limiter(x,y) =x*coeff,y*coeff
 		coeff = 1.0/max(1.0,peak);
     };
 
+//------------------ Reverb ----------------------//
 sinus_reverb = _<: instrReverb :>_;
 
 instrReverb = _,_ <: *(reverbGain),*(reverbGain),*(1 - reverbGain),*(1 - reverbGain) :

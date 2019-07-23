@@ -3,6 +3,10 @@ declare author "Developpement Grame - CNCM par Elodie Rabibisoa et Romain Consta
 
 import ("stdfaust.lib");
 
+process = par(i, 2, shaker_sound(i, shake_type) * env(i)) :> _ * on_off <: _,_;
+
+on_off = checkbox("[0]ON / OFF");
+
 shake_type = hslider("[1]Shakers[style:radio {'25 bpm':0;'50 bpm':1;'100 bpm':2}]", 0, 0, 2, 1);
 
 shake_x = hslider("X [acc: 0 0 -13 0 13][hidden:1]", 0, -100, 100, 0.001);
@@ -15,7 +19,3 @@ well(0) = +((abs(shake_x + shake_x')) > 100) ~ *(0.99) : min(1) : max(0);
 well(1) = +((abs(shake_y + shake_y')) > 120) ~ *(0.99) : min(1) : max(0);
 
 env(n) = en.smoothEnvelope(0.05, well(n));
-
-on_off = checkbox("[0]ON / OFF");
-
-process = par(i, 2, shaker_sound(i, shake_type) * env(i)) :> _ * on_off <: _,_;
