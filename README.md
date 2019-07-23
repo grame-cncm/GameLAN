@@ -1,6 +1,7 @@
 # GameLAN
 
 GRAME - Centre National de Création Musicale
+
 Développement par Elodie Rabibisoa et Romain Constant
 
 ## Descriptif:
