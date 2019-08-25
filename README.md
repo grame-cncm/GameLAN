@@ -12,4 +12,7 @@ Faust est un langage de programmation pour le traitement numérique du signal en
 
 Les 7 applications de la famille « GameLAN » (Sinusoide, Baliphone, Sequenceur, ShakerXY, Attackey, Drone, Atomicro) peuvent être jouées en solo ou en orchestre.
 
+Elles sont disponibles sur le [Google Play Store](https://play.google.com/store/search?q=baliphone&c=apps&hl=fr) et l'[Apple Store](https://www.apple.com/fr/ios/app-store/)
+
 Pour une immersion complète téléchargez les toutes !
+
