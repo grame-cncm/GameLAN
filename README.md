@@ -16,7 +16,7 @@ Elles sont disponibles sur le [Google Play Store](https://play.google.com/store/
 
 Pour une immersion complète téléchargez les toutes !
 
-### Atomicro :
+### Atomicro (iOS) :
 
 ![alt text](https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Atomicro_ios.png "Atomicro")
 
