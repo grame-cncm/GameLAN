@@ -1,4 +1,4 @@
-declare name "Sequencer";
+declare name "Sequenceur";
 declare author "Developpement Grame - CNCM par Elodie Rabibisoa et Romain Constant.";
 
 import ("stdfaust.lib");

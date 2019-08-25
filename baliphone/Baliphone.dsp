@@ -57,8 +57,8 @@ bali_reverb = _<: instrReverb :>_;
 instrReverb = _,_ <: *(reverbGain),*(reverbGain),*(1 - reverbGain),*(1 - reverbGain) :
 re.zita_rev1_stereo(rdel,f1,f2,t60dc,t60m,fsmax),_,_ <: _,!,_,!,!,_,!,_ : +,+
     with {
-       reverbGain = 1; //hslider("v:Reverb/Reverberation Volume",0.1,0.05,1,0.01) : si.smooth(0.999) : min(1) : max(0.05);
-       roomSize = 0.7; //hslider("Reverberation Room Size", 0.1,0.05,2,0.01) : min(2) : max(0.05);
+       reverbGain = 1;
+       roomSize = 0.7;
        rdel = 20;
        f1 = 200;
        f2 = 6000;

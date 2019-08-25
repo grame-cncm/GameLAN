@@ -12,4 +12,37 @@ Faust est un langage de programmation pour le traitement numérique du signal en
 
 Les 7 applications de la famille « GameLAN » (Sinusoide, Baliphone, Sequenceur, ShakerXY, Attackey, Drone, Atomicro) peuvent être jouées en solo ou en orchestre.
 
+Elles sont disponibles sur le [Google Play Store](https://play.google.com/store/search?q=baliphone&c=apps&hl=fr) et l'[Apple Store](https://www.apple.com/fr/ios/app-store/)
+
 Pour une immersion complète téléchargez les toutes !
+
+### Atomicro (iOS) :
+
+<img src="https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Atomicro_ios.png " alt="Atomicro" width="250" height="500" />
+
+### Attackey :
+
+<img src="https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Attackey.png " alt="Attackey" width="500" height="250" />
+<img src="https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Attackey_3.png " alt="Attackey" width="500" height="250" />
+
+### Baliphone :
+
+<img src="https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Baliphone.png " alt="Baliphone" width="250" height="500" />
+
+### DroneLAN :
+
+<img src="https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/DroneLAN.png " alt="DroneLAN" width="250" height="500" />
+
+### Sequenceur :
+
+<img src="https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Seq.png " alt="Sequenceur" width="250" height="500" />
+
+<img src="https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Seq_2.png " alt="Sequenceur" width="250" height="500" />
+
+### ShakerXY :
+
+<img src="https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Shaker.png " alt="ShakerXY" width="250" height="500" />
+
+### Sinusoide :
+
+<img src="https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Sinusoide.png " alt="Sinusoide" width="250" height="500" />
