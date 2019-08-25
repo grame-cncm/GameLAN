@@ -16,3 +16,32 @@ Elles sont disponibles sur le [Google Play Store](https://play.google.com/store/
 
 Pour une immersion complète téléchargez les toutes !
 
+### Atomicro :
+
+![alt text](https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Atomicro_ios.png "Atomicro")
+
+### Attackey :
+
+![alt text](https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Attackey.png "Attackey")
+![alt text](https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Attackey_3.png "Attackey")
+
+### Baliphone :
+
+![alt text](https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Baliphone.png "Baliphone")
+
+### DroneLAN :
+
+![alt text](https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/DroneLAN.png "DroneLAN")
+
+### Sequenceur :
+
+![alt text](https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Seq.png "Sequenceur")
+![alt text](https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Seq_2.png "Sequenceur")
+
+### ShakerXY :
+
+![alt text](https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Shaker.png "ShakerXY")
+
+### Sinusoide :
+
+![alt text](https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Sinusoide.png "Sinusoide")
