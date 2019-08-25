@@ -1,4 +1,4 @@
-declare name "Drone";
+declare name "DroneLAN";
 declare author "Developpement Grame - CNCM par Elodie Rabibisoa et Romain Constant.";
 
 import ("stdfaust.lib");
