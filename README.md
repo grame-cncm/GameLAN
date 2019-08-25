@@ -18,30 +18,31 @@ Pour une immersion complète téléchargez les toutes !
 
 ### Atomicro (iOS) :
 
-![alt text](https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Atomicro_ios.png "Atomicro")
+<img src="https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Atomicro_ios.png " alt="Atomicro" width="250" height="500" />
 
 ### Attackey :
 
-![alt text](https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Attackey.png "Attackey")
-![alt text](https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Attackey_3.png "Attackey")
+<img src="https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Attackey.png " alt="Attackey" width="500" height="250" />
+<img src="https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Attackey_3.png " alt="Attackey" width="500" height="250" />
 
 ### Baliphone :
 
-![alt text](https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Baliphone.png "Baliphone")
+<img src="https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Baliphone.png " alt="Baliphone" width="250" height="500" />
 
 ### DroneLAN :
 
-![alt text](https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/DroneLAN.png "DroneLAN")
+<img src="https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/DroneLAN.png " alt="DroneLAN" width="250" height="500" />
 
 ### Sequenceur :
 
-![alt text](https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Seq.png "Sequenceur")
-![alt text](https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Seq_2.png "Sequenceur")
+<img src="https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Seq.png " alt="Sequenceur" width="250" height="500" />
+
+<img src="https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Seq_2.png " alt="Sequenceur" width="250" height="500" />
 
 ### ShakerXY :
 
-![alt text](https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Shaker.png "ShakerXY")
+<img src="https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Shaker.png " alt="ShakerXY" width="250" height="500" />
 
 ### Sinusoide :
 
-![alt text](https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Sinusoide.png "Sinusoide")
+<img src="https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Sinusoide.png " alt="Sinusoide" width="250" height="500" />
