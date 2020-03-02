@@ -35,34 +35,33 @@ counter(sampleSize,n,p) = trigger(n,p) : upfront : decrease > (0.0) with{ //trig
 index(sampleSize,n,p) = +(counter(sampleSize,n,p))~_ * (1 - (trigger(n,p) : upfront)) : int; //increment loop with reinit to 0 through reversed impulse (trig : upfront)
 
 play(s, part,n,p) = (part, reader(s,n,p)) : outs(s)
-    with {
-        length(s) = part,0 : s : _,si.block(outputs(s)-1);
-        srate(s) = part,0 : s : !,_,si.block(outputs(s)-2);
-        outs(s) = s : si.block(2), si.bus(outputs(s)-2);
-        reader(s,n,p) = index(length(s),n,p);
-    };
+with {
+    length(s) = part,0 : s : _,si.block(outputs(s)-1);
+    srate(s) = part,0 : s : !,_,si.block(outputs(s)-2);
+    outs(s) = s : si.block(2), si.bus(outputs(s)-2);
+    reader(s,n,p) = index(length(s),n,p);
+};
 
 //----------------- Limiter --------------//
-limiter(x,y) =x*coeff,y*coeff
-
-	with {
-		epsilon =1/(44100*1.0);
-		peak = max(abs(x),abs(y)):max~-(epsilon);
-		coeff = 1.0/max(1.0,peak);
-    };
+limiter(x,y) = x*coeff,y*coeff
+with {
+    epsilon = 1/(44100*1.0);
+    peak = max(abs(x),abs(y)) : max ~ -(epsilon);
+    coeff = 1.0/max(1.0,peak);
+};
 
 //----------------- Reverb --------------//
 bali_reverb = _<: instrReverb :>_;
 
 instrReverb = _,_ <: *(reverbGain),*(reverbGain),*(1 - reverbGain),*(1 - reverbGain) :
 re.zita_rev1_stereo(rdel,f1,f2,t60dc,t60m,fsmax),_,_ <: _,!,_,!,!,_,!,_ : +,+
-    with {
-       reverbGain = 1;
-       roomSize = 0.7;
-       rdel = 20;
-       f1 = 200;
-       f2 = 6000;
-       t60dc = roomSize*3;
-       t60m = roomSize*2;
-       fsmax = 48000;
-    };
+with {
+    reverbGain = 1;
+    roomSize = 0.7;
+    rdel = 20;
+    f1 = 200;
+    f2 = 6000;
+    t60dc = roomSize*3;
+    t60m = roomSize*2;
+    fsmax = 48000;
+};

@@ -3,7 +3,6 @@ declare nvoices "12";
 declare author "Developpement Grame - CNCM par Elodie Rabibisoa et Romain Constant.";
 // Specific syntax for faust2android, [style:keyboard] doesn't exist in iOS
 
-
 process = vgroup("AttacKey [style:keyboard]", instru);
 
 freq = hslider("freq", 349.23, 261.63, 783.99, 0.001);
@@ -32,26 +31,26 @@ counter(sampleSize) = trigger : upfront : decrease > (0.0) with{
 speed = freq/(349.23*2); //reference pitch = F * 2 (midi keyboard plays one octave higher)
 
 play(s, part) = (part, reader(s)) : outs(s)
-    with {
-        length(s) = part,0 : s : _,si.block(outputs(s)-1);
-        srate(s) = part,0 : s : !,_,si.block(outputs(s)-2);
-        outs(s) = s : si.block(2), si.bus(outputs(s)-2);
-        index(sampleSize) = +(speed*(float(srate(s)/ma.SR)*(counter(sampleSize))))~_ * (1 - (trigger : upfront)) : int; //increment loop with reinit to 0 through reversed impulse (trig : upfront)
-        reader(s) = index(length(s));
-    };
+with {
+    length(s) = part,0 : s : _,si.block(outputs(s)-1);
+    srate(s) = part,0 : s : !,_,si.block(outputs(s)-2);
+    outs(s) = s : si.block(2), si.bus(outputs(s)-2);
+    index(sampleSize) = +(speed*(float(srate(s)/ma.SR)*(counter(sampleSize))))~_ * (1 - (trigger : upfront)) : int; //increment loop with reinit to 0 through reversed impulse (trig : upfront)
+    reader(s) = index(length(s));
+};
 
 // -------------------- Reverb ------------------- //
 attackey_reverb = _<: instrReverb :>_;
 
 instrReverb = _,_ <: *(reverbGain),*(reverbGain),*(1 - reverbGain),*(1 - reverbGain) :
 re.zita_rev1_stereo(rdel,f1,f2,t60dc,t60m,fsmax),_,_ <: _,!,_,!,!,_,!,_ : +,+
-    with {
-       reverbGain = 1;
-       roomSize = 2;
-       rdel = 20;
-       f1 = 200;
-       f2 = 6000;
-       t60dc = roomSize*3;
-       t60m = roomSize*2;
-       fsmax = 48000;
-    };
+with {
+    reverbGain = 1;
+    roomSize = 2;
+    rdel = 20;
+    f1 = 200;
+    f2 = 6000;
+    t60dc = roomSize*3;
+    t60m = roomSize*2;
+    fsmax = 48000;
+};

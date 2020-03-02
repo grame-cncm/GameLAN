@@ -67,18 +67,18 @@ trigger = par(i, 16, vgroup("[3]Steps",check(i)) == (seq_select + 1) : upfront) 
 upfront(x) = (x-x')>0.5;
 
 counter(sampleSize) = trigger : decrease > (0.0)
-    with { //trig impulse to launch stream of 1
-        decay(y) = y - (y>0.0)/sampleDuration;
-        decrease = +~decay;
-        sampleDuration = hslider("Decay[acc:0 0 -8 0 8][hidden:1]", 1, 0.001, 1.5, 0.001) * (ma.SR): min(sampleSize) : max(44) : int;
-    };
+with { //trig impulse to launch stream of 1
+    decay(y) = y - (y>0.0)/sampleDuration;
+    decrease = +~decay;
+    sampleDuration = hslider("Decay[acc:0 0 -8 0 8][hidden:1]", 1, 0.001, 1.5, 0.001) * (ma.SR): min(sampleSize) : max(44) : int;
+};
 
 index(sampleSize) = +(counter(sampleSize))~_ * (1 - (trigger : upfront)) : int; //increment loop with reinit to 0 through reversed impulse (trig : upfront)
 
 play(s, part) = (part, reader(s)) : outs(s)
-    with {
-        length(s) = part,0 : s : _,si.block(outputs(s)-1);
-        srate(s) = part,0 : s : !,_,si.block(outputs(s)-2);
-        outs(s) = s : si.block(2), si.bus(outputs(s)-2);
-        reader(s,n) = index(length(s));
-    };
+with {
+    length(s) = part,0 : s : _,si.block(outputs(s)-1);
+    srate(s) = part,0 : s : !,_,si.block(outputs(s)-2);
+    outs(s) = s : si.block(2), si.bus(outputs(s)-2);
+    reader(s,n) = index(length(s));
+};
