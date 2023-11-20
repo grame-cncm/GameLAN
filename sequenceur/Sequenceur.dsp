@@ -56,7 +56,7 @@ check(15) = checkbox("h:[11]/16") * 16;
 
 sample_pick = hslider("[0]Samples[style:radio{'Bip Square':0;'Hi-Hat':1;'Kick':2;'Snare':3}]", 0, 0, 3, 1);
 
-sample(0) = soundfile("sample_2 [url:bipsquare_oneshot.flac]", 1);
+sample(0) = soundfile("sample_2 [url:Bipsquare_oneshot.flac]", 1);
 sample(1) = soundfile("sample_4 [url:Hihat_oneshot_N.flac]", 1);
 sample(2) = soundfile("sample_6 [url:Kick_oneshot_N.flac]", 1);
 sample(3) = soundfile("sample_8 [url:Snare_oneshot_N.flac]", 1);
