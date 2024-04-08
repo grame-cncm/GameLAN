@@ -1,7 +1,8 @@
+import ("stdfaust.lib");
+
 declare name "Baliphone";
 declare author "Developpement Grame - CNCM par Elodie Rabibisoa et Romain Constant.";
-
-import ("stdfaust.lib");
+declare soundfiles "https://raw.githubusercontent.com/grame-cncm/GameLAN/master/baliphone";
 
 // 4 gamelans :
 process = par(i, 4, (multi(i):> _* (select_gamelan == i))) :> bali_reverb * on_off <: limiter : _,_;

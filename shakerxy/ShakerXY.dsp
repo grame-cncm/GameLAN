@@ -1,7 +1,8 @@
+import ("stdfaust.lib");
+
 declare name "ShakerXY";
 declare author "Developpement Grame - CNCM par Elodie Rabibisoa et Romain Constant.";
-
-import ("stdfaust.lib");
+declare soundfiles "https://raw.githubusercontent.com/grame-cncm/GameLAN/master/shakerxy";
 
 process = par(i, 2, shaker_sound(i, shake_type) * env(i)) :> _ * on_off <: _,_;
 

@@ -1,7 +1,8 @@
+import ("stdfaust.lib");
+
 declare name "Sequenceur";
 declare author "Developpement Grame - CNCM par Elodie Rabibisoa et Romain Constant.";
-
-import ("stdfaust.lib");
+declare soundfiles "https://raw.githubusercontent.com/grame-cncm/GameLAN/master/sequenceur";
 
 process = sequenceur * onOff <:_,_;
 
@@ -13,7 +14,7 @@ sequenceur = par(i, N, play(sample(i), file_index, i) * (sample_pick == i)) :>_ 
 
 seq_select = ba.beat(bps) : ba.pulse_countup_loop(15, 1) : hbargraph("Suivi",0,15);
 
-bps = bpm.a25*(typeBpm == 7)+
+bps = bpm.a25*(typeBpm == 7) +
     bpm.b37*(typeBpm == 6) +
     bpm.c50*(typeBpm == 5) +
     bpm.d62*(typeBpm == 4) +

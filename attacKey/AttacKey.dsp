@@ -1,10 +1,11 @@
+import("stdfaust.lib");
+
 declare name "Attackey";
 declare author "Developpement Grame - CNCM par Elodie Rabibisoa, Romain Constant et Stéphane Letz.";
-
-import("stdfaust.lib");
 declare nvoices "12";
-// Specific syntax for faust2android, [style:keyboard] doesn't exist in iOS
+declare soundfiles "https://raw.githubusercontent.com/grame-cncm/GameLAN/master/attacKey";
 
+// Specific syntax for faust2android, [style:keyboard] doesn't exist in iOS
 process = vgroup("Attackey [style:keyboard]", instru);
 
 freq = hslider("freq", 349.23, 261.63, 783.99, 0.001);

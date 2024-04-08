@@ -1,7 +1,8 @@
+import ("stdfaust.lib");
+
 declare name "DroneLAN";
 declare author "Developpement Grame - CNCM par Elodie Rabibisoa et Romain Constant.";
-
-import ("stdfaust.lib");
+declare soundfiles "https://raw.githubusercontent.com/grame-cncm/GameLAN/master/drone";
 
 // 2 drones :
 process = par(i, 2, (multi(i) :> _* (select_drone == i))) :>_ * on_off <:_,_;
