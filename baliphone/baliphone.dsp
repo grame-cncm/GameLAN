@@ -1,6 +1,6 @@
 import ("stdfaust.lib");
 
-declare name "Baliphone";
+declare name "baliphone";
 declare author "Developpement Grame - CNCM par Elodie Rabibisoa et Romain Constant.";
 declare soundfiles "https://raw.githubusercontent.com/grame-cncm/GameLAN/master/baliphone";
 

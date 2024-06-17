@@ -10,43 +10,42 @@ GameLAN is a set of musical applications designed by Grame, Centre national de c
 
 Faust is a programming language for real-time digital signal processing. It enables easy design of synthesizers and audio effects for a wide range of platforms, and can be used to create web and mobile music applications, audio plug-ins (e.g. VST, AU, etc.), externals for Max/MSP, PureData, Csound, etc., or stand-alone applications. 
 
-The 7 applications in the "GameLAN" family (Sinusoide, Baliphone, Sequenceur, ShakerXY, Attackey, Drone, Atomicro) can be played solo or in orchestra.
+The 7 applications in the "GameLAN" family (sinusoide, baliphone, sequenceur, shakerxy, attackey, drone, atomicro) can be played solo or in orchestra.
 
 They are available on the [Google Play Store](https://play.google.com/store/search?q=baliphone&c=apps&hl=fr) and the [Apple Store](https://www.apple.com/fr/ios/app-store/).
 
 For complete immersion, download them all!
 
-### Atomicro (iOS):
+### atomicro (iOS):
 
 <img src="https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Atomicro_ios.png " alt="Atomicro" width="250" height="500" />
 
-### Attackey:
+### attackey:
 
 <img src="https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Attackey.png " alt="Attackey" width="500" height="250" />
 <img src="https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Attackey_3.png " alt="Attackey" width="500" height="250" />
 
-### Baliphone:
+### baliphone:
 
 <img src="https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Baliphone.png " alt="Baliphone" width="250" height="500" />
 
-### DroneLAN:
+### drone:
 
 <img src="https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/DroneLAN.png " alt="DroneLAN" width="250" height="500" />
 
-### Sequenceur:
+### sequenceur:
 
 <img src="https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Seq.png " alt="Sequenceur" width="250" height="500" />
 
 <img src="https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Seq_2.png " alt="Sequenceur" width="250" height="500" />
 
-### ShakerXY:
+### shakerxy:
 
 <img src="https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Shaker.png " alt="ShakerXY" width="250" height="500" />
 
-### Sinusoide:
+### sinusoide:
 
 <img src="https://github.com/erabi/GameLAN/blob/dev/assets/android%20screenshots/Sinusoide.png " alt="Sinusoide" width="250" height="500" />
-
 
 Développement par Elodie Rabibisoa et Romain Constant
 
@@ -56,7 +55,7 @@ GameLAN est un ensemble d’applications musicales conçu par Grame, Centre nati
 
 Faust est un langage de programmation pour le traitement numérique du signal en temps réel. Il permet de concevoir de manière simple des synthétiseurs et des effets audios pour un grand nombre de plateformes et peut notamment être utilisé pour créer des applications web et mobiles pour la musique, des plug-ins audios (ex. VST, AU, etc.), des externals pour Max/MSP, PureData, Csound, etc., ou encore des applications indépendantes. 
 
-Les 7 applications de la famille « GameLAN » (Sinusoide, Baliphone, Sequenceur, ShakerXY, Attackey, Drone, Atomicro) peuvent être jouées en solo ou en orchestre.
+Les 7 applications de la famille « GameLAN » (sinusoide, baliphone, sequenceur, shakerxy, attackey, drone, atomicro) peuvent être jouées en solo ou en orchestre.
 
 Elles sont disponibles sur le [Google Play Store](https://play.google.com/store/search?q=baliphone&c=apps&hl=fr) et l'[Apple Store](https://www.apple.com/fr/ios/app-store/)
 

@@ -1,4 +1,4 @@
-declare name "Atomicro";
+declare name "atomicro";
 declare author "Developpement Grame - CNCM par Elodie Rabibisoa et Romain Constant.";
 
 import("stdfaust.lib");

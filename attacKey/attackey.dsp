@@ -1,6 +1,6 @@
 import("stdfaust.lib");
 
-declare name "Attackey";
+declare name "attackey";
 declare author "Developpement Grame - CNCM par Elodie Rabibisoa, Romain Constant et Stéphane Letz.";
 declare nvoices "12";
 declare soundfiles "https://raw.githubusercontent.com/grame-cncm/GameLAN/master/attacKey";
