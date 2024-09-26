@@ -52,7 +52,7 @@ with {
 };
 
 //----------------- Reverb --------------//
-bali_reverb = _<: instrReverb :>_;
+bali_reverb = _ <: instrReverb :> _;
 
 instrReverb = _,_ <: *(reverbGain),*(reverbGain),*(1 - reverbGain),*(1 - reverbGain) :
 re.zita_rev1_stereo(rdel,f1,f2,t60dc,t60m,fsmax),_,_ <: _,!,_,!,!,_,!,_ : +,+

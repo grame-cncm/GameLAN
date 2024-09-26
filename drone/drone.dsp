@@ -5,7 +5,7 @@ declare author "Developpement Grame - CNCM par Elodie Rabibisoa et Romain Consta
 declare soundfiles "https://raw.githubusercontent.com/grame-cncm/GameLAN/master/drone";
 
 // 2 drones :
-process = par(i, 2, (multi(i) :> _* (select_drone == i))) :>_ * on_off <:_,_;
+process = par(i, 2, (multi(i) :> _* (select_drone == i))) :>_ * on_off <: _,_;
 
 select_drone = hslider("[1]Drones[style:radio{'1':0;'2':1}]", 0, 0, 1, 1);
 

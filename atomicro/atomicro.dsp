@@ -10,13 +10,13 @@ size = int(211680); // 4.8 seconds
 
 /*------------------- Recording counter ------------------------*/
 // increment of 1 (max = size+1) while record > 0 :
-rec_counter = (0):+~(+(1): * (record)): min(size);
+rec_counter = (0) : + ~(+(1) : * (record)) : min(size);
 		
 /*--------------------- Fade in / Fade out -----------------------*/
 record = checkbox ("h:[0]/Record");
 time_fade = 0.1;
 base_amp = 1/(ma.SR * time_fade);
-fade_in = select2(record,-1*base_amp,base_amp):+~(min(1):max(base_amp));
+fade_in = select2(record, -1*base_amp,base_amp) : + ~(min(1) : max(base_amp));
 
 /*--------------------- Read/Write buffer --------------------------*/
 play = checkbox ("h:[0]/Play");

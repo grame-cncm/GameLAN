@@ -14,7 +14,7 @@ gate = button("gate");
 
 envelope = en.adsr(0.01,0.01,0.9,0.1,gate)*gain;
 
-instru = play1(noteOn, instrument) * envelope * volume : attackey_reverb * 0.5 <:_,_;
+instru = play1(noteOn, instrument) * envelope * volume : attackey_reverb * 0.5 <: _,_;
 
 instrument = hslider("Instruments[style:radio{'1':0;'2':1;'3':2;'4':3;'5':4}]", 0, 0, 4, 1);
 volume = hslider("Volume [acc: 0 0 -8 0 0][hidden:1]", 1, 0, 1, 0.001):si.smoo;

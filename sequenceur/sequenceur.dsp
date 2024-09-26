@@ -4,13 +4,13 @@ declare name "sequenceur";
 declare author "Developpement Grame - CNCM par Elodie Rabibisoa et Romain Constant.";
 declare soundfiles "https://raw.githubusercontent.com/grame-cncm/GameLAN/master/sequenceur";
 
-process = sequenceur * onOff <:_,_;
-
 N = 4;
+
+process = sequenceur * onOff <:_,_;
 
 onOff = checkbox("[1]ON/OFF");
 
-sequenceur = par(i, N, play(sample(i), file_index, i) * (sample_pick == i)) :>_ ;
+sequenceur = par(i, N, play(sample(i), file_index, i) * (sample_pick == i)) :> _;
 
 seq_select = ba.beat(bps) : ba.pulse_countup_loop(15, 1) : hbargraph("Suivi",0,15);
 
@@ -64,7 +64,7 @@ sample(3) = soundfile("sample_8 [url:Snare_oneshot_N.flac]", 1);
 
 // ------------------------------------ Player --------------------------------------
 file_index = 0;
-trigger = par(i, 16, vgroup("[3]Steps",check(i)) == (seq_select + 1) : upfront) :>_;
+trigger = par(i, 16, vgroup("[3]Steps",check(i)) == (seq_select + 1) : upfront) :> _;
 upfront(x) = (x-x')>0.5;
 
 counter(sampleSize) = trigger : decrease > (0.0)
@@ -83,3 +83,4 @@ with {
     outs(s) = s : si.block(2), si.bus(outputs(s)-2);
     reader(s,n) = index(length(s));
 };
+
