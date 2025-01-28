@@ -3,7 +3,7 @@ declare author "Developpement Grame - CNCM par Elodie Rabibisoa et Romain Consta
 
 import("stdfaust.lib");
 
-process = _ : *(0.5),fade_in : * : wr_index <: idelay_drywet,_ : select2(by_pass_delay);
+process = _ : *(0.5),fade_in : * : wr_index <: idelay_drywet,_ : select2(by_pass_delay) <: _,_;
 
 // max size of buffer to be recorded
 size = int(211680); // 4.8 seconds

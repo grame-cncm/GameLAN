@@ -3,7 +3,7 @@ declare author "Developpement Grame - CNCM par Elodie Rabibisoa et Romain Consta
 
 import ("stdfaust.lib");
 
-process = mode_switch : os.osc * 0.333 * volume <: sinus_reverb,_ : dry_wet <: limiter :> _ * on_off;
+process = mode_switch : os.osc * 0.333 * volume <: sinus_reverb,_ : dry_wet <: limiter : *(on_off),*(on_off);
 
 on_off = checkbox("[1]ON / OFF");
 freq_slide = vslider("Slide [unit:Hz][acc:0 0 -10 0 10][hidden:1]", freq(5), freq(0), freq(10), 0.001) : si.smooth(0.998);
