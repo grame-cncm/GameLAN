@@ -16,10 +16,10 @@ multi(N) = par(i, 2, play(gamelan(N), i, i,(pitch == i)) * (0.666));
 
 pitch = hslider("[3]Note [hidden: 1][acc:0 0 -10 0 10]", 1, 0, 2, 0.01) : rint/2;
 
-gamelan(0) = soundfile("Gamelan_1 [url:{'Gamelan_1_1_C_gauche.flac'; 'Gamelan_3_2_Eb_gauche.flac'}]", 1);
+gamelan(0) = soundfile("Gamelan_1 [url:{'Gamelan_1_1_C_gauche.flac';'Gamelan_3_2_Eb_gauche.flac'}]", 1);
 gamelan(1) = soundfile("Gamelan_2 [url:{'Gamelan_2_1_D_center.flac';'Gamelan_4_1_G_droite.flac'}]", 1);
 gamelan(2) = soundfile("Gamelan_3 [url:{'Gamelan_5_2_Ab_center.flac';'Gamelan_7_2_D_droite.flac'}]", 1);
-gamelan(3) = soundfile("Gamelan_4 [url:{'Gamelan_6_3_C_gauche.flac'; 'Gamelan_8_3_Eb_center.flac'}]", 1);
+gamelan(3) = soundfile("Gamelan_4 [url:{'Gamelan_6_3_C_gauche.flac';'Gamelan_8_3_Eb_center.flac'}]", 1);
 
 //--------------- Player ---------------//
 file_index = 0;
